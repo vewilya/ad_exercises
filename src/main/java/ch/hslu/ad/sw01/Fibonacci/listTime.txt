@@ -1,0 +1,70 @@
+----------------------------------------------
+n: 10, Algorithm: fiboRec1, time: 17
+n: 10, Algorithm: fiboRec2, time: 0
+n: 10, Algorithm: fiboIter1, time: 0
+n: 10, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 13, Algorithm: fiboRec1, time: 0
+n: 13, Algorithm: fiboRec2, time: 0
+n: 13, Algorithm: fiboIter1, time: 0
+n: 13, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 16, Algorithm: fiboRec1, time: 0
+n: 16, Algorithm: fiboRec2, time: 0
+n: 16, Algorithm: fiboIter1, time: 0
+n: 16, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 19, Algorithm: fiboRec1, time: 0
+n: 19, Algorithm: fiboRec2, time: 0
+n: 19, Algorithm: fiboIter1, time: 0
+n: 19, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 22, Algorithm: fiboRec1, time: 0
+n: 22, Algorithm: fiboRec2, time: 0
+n: 22, Algorithm: fiboIter1, time: 0
+n: 22, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 25, Algorithm: fiboRec1, time: 1
+n: 25, Algorithm: fiboRec2, time: 0
+n: 25, Algorithm: fiboIter1, time: 0
+n: 25, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 28, Algorithm: fiboRec1, time: 1
+n: 28, Algorithm: fiboRec2, time: 0
+n: 28, Algorithm: fiboIter1, time: 0
+n: 28, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 31, Algorithm: fiboRec1, time: 5
+n: 31, Algorithm: fiboRec2, time: 0
+n: 31, Algorithm: fiboIter1, time: 0
+n: 31, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 34, Algorithm: fiboRec1, time: 22
+n: 34, Algorithm: fiboRec2, time: 0
+n: 34, Algorithm: fiboIter1, time: 0
+n: 34, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 37, Algorithm: fiboRec1, time: 90
+n: 37, Algorithm: fiboRec2, time: 0
+n: 37, Algorithm: fiboIter1, time: 0
+n: 37, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 40, Algorithm: fiboRec1, time: 375
+n: 40, Algorithm: fiboRec2, time: 0
+n: 40, Algorithm: fiboIter1, time: 0
+n: 40, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 43, Algorithm: fiboRec1, time: 1583
+n: 43, Algorithm: fiboRec2, time: 0
+n: 43, Algorithm: fiboIter1, time: 0
+n: 43, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 46, Algorithm: fiboRec1, time: 6703
+n: 46, Algorithm: fiboRec2, time: 0
+n: 46, Algorithm: fiboIter1, time: 0
+n: 46, Algorithm: fiboIter2, time: 0
+----------------------------------------------
+n: 49, Algorithm: fiboRec1, time: 28370
+n: 49, Algorithm: fiboRec2, time: 0
+n: 49, Algorithm: fiboIter1, time: 0
+n: 49, Algorithm: fiboIter2, time: 0

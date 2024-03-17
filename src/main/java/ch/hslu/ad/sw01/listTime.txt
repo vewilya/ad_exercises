@@ -1,0 +1,8 @@
+n,counter
+n: 1, counter: 9, time: 57
+n: 2, counter: 27, time: 170
+n: 4, counter: 75, time: 467
+n: 8, counter: 231, time: 1453
+n: 16, counter: 795, time: 4947
+n: 32, counter: 2943, time: 18300
+n: 64, counter: 11331, time: 70264
