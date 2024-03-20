@@ -30,7 +30,7 @@ public interface TreeInterface<T> {
      * @param element element to check for.
      * @return true if the element was found, false otherwise
      */
-    boolean contains(T element);
+    boolean search(T element);
 
     /**
      * Returns the height of the tree.
@@ -59,6 +59,13 @@ public interface TreeInterface<T> {
      * @return path of a tree element as a list of elements that were passed by.
      */
     List<T> getPath(T element);
+
+    /**
+     * Returns the depth of a specific element in the tree.
+     * 
+     * @return depth of a specific element in the tree as an integer value.
+     */
+    int getDepth(T element);
 
     /**
      * Returns the degree of a specific element in the tree.

@@ -6,45 +6,36 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
+public class HashTree<T extends Comparable<T>> implements TreeInterface<T> {
 
-    private Node root;
-    private static final Logger LOG = LoggerFactory.getLogger(MyTree.class);
-
+    private HashNode root;
+    private static final Logger LOG = LoggerFactory.getLogger(HashTree.class);
     private int weightCounter = 0;
-
     static final int BINARY_TREE_ORDER = 2;
 
-    public MyTree() {
+    /**
+     * Default Constructor
+     */
+    public HashTree() {
         this.root = null;
     }
 
     @Override
     public void add(T element) {
-        /*
-         * NullCheck
-         */
         if (element == null) {
             throw new NullPointerException("Given element is null!");
         }
 
-        if (this.search(element)) {
-            throw new IllegalArgumentException("Element already exists in the tree!");
-        }
-
-        /*
-         * Pass the element on to the recusrive function
-         */
         this.root = addRecursive(this.root, element);
     }
 
-    private Node addRecursive(Node current, T element) {
+    private HashNode addRecursive(HashNode current, T element) {
         /*
          * If the current node is null, we have found the place to insert the new node
          */
         if (current == null) {
             LOG.info("Adding new node with element {}", element);
-            return new Node(element);
+            return new HashNode(element);
         }
 
         /*
@@ -67,7 +58,7 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
             throw new NullPointerException("Given element is null!");
         }
 
-        Node current = this.root;
+        HashNode current = this.root;
 
         while (current.getElement() != element) {
             if (element.compareTo(current.getElement()) < 0) {
@@ -83,26 +74,23 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
     }
 
     public T getRoot() {
-        if (this.root == null) {
-            return null;
-        }
-
         LOG.info("Returning root node {}", this.root);
         return this.root.element;
     }
+
 
     @Override
     public boolean search(T element) {
         return searchRecursive(this.root, element);
     }
 
-    private boolean searchRecursive(Node current, T element) {
+    private boolean searchRecursive(HashNode current, T element) {
 
         if (current == null) {
             return false;
         }
 
-        if (current.element.equals(element)) {
+        if (current.element == element) {
             return true;
         } else if (element.compareTo(current.element) < 0) {
             LOG.info("-> {} < {}", element, current.element);
@@ -113,7 +101,7 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
         }
     }
 
-    private int traverseInOrder(Node node) {
+    public int traverseInOrder(HashNode node) {
 
         if (node != null) {
             weightCounter++;
@@ -131,7 +119,7 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
             throw new NullPointerException("Given element is null!");
         }
 
-        Node current = this.root;
+        HashNode current = this.root;
         int degree = 0;
 
         /*
@@ -173,7 +161,7 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
     @Override
     public int getHeight() {
         int height = 0;
-        Node current = this.root;
+        HashNode current = this.root;
 
         while (current != null) {
             height++;
@@ -195,7 +183,7 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
             throw new NullPointerException("Given element is null! No dodo!");
         }
 
-        Node current = this.root;
+        HashNode current = this.root;
         ArrayList<T> path = new ArrayList<>();
 
         // Adding the root element to the path
@@ -225,25 +213,34 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
 
     @Override
     public String toString() {
-        return "MyTree [root=" + root + "]";
+        return "MyTree [root=" + this.root + "]";
     }
 
-    private class Node {
+    private class HashNode {
 
-        private Node leftNode;
-        private Node rightNode;
+        private HashNode leftNode;
+        private HashNode rightNode;
+        private final T element;
+        private int hashCode;
 
-        private T element;
+        public HashNode(T element) {
 
-        public Node(T element) {
-            this.element = element;
             this.leftNode = null;
             this.rightNode = null;
+            this.element = element;
+
+            this.hashCode = element.hashCode();
+            LOG.info("Hash: {}", this.hashCode);
+        }
+
+        public int getHashCode() {
+            return this.hashCode;
         }
 
         public boolean isLeaf() {
             return this.leftNode == null && this.rightNode == null;
         }
+
 
         public T getElement() {
             return this.element;
@@ -254,5 +251,13 @@ public class MyTree<T extends Comparable<T>> implements TreeInterface<T> {
             return "Node: " + this.element + " LeftNode: " + this.leftNode + " RightNode: " + this.rightNode;
         }
 
+    } /* Node */
+
+    public static void main(String[] args) {
+        HashTree<Integer> tree = new HashTree<>();
+        tree.add(3);
+        tree.add(4);
+        tree.add(2);
+        tree.add(1);
     }
 }
