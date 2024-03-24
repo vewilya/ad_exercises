@@ -1,4 +1,4 @@
-package ch.hslu.ad.sw04.ex02;
+package ch.hslu.ad.sw04.ex2;
 
 /**
  * The Stackable interface represents a stack data structure that can hold
