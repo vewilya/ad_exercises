@@ -1,4 +1,4 @@
-package ch.hslu.ad.sw02;
+package ch.hslu.ad.sw04.ex4;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,18 +6,18 @@ import org.slf4j.LoggerFactory;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class List<T> implements Iterable<T> {
+public class BucketList<T> implements Iterable<T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(List.class);
+    private static final Logger LOG = LoggerFactory.getLogger(BucketList.class);
     private Node<T> head;
     private int size;
 
-    public List() {
+    public BucketList() {
         this.head = null;
     }
 
     public static void main(String[] args) {
-        List<Integer> li = new List<>();
+        BucketList<Integer> li = new BucketList<>();
         li.add(22);
         li.add(12);
         li.add(432);
@@ -50,7 +50,7 @@ public class List<T> implements Iterable<T> {
         if (this.head == null) {
             this.head = newNode;
 
-            LOG.info("Adding Node: {}", newNode.getElement());
+            LOG.info("Bucket: adding {}", newNode.getElement());
             LOG.info("{} -> {}", newNode.getElement(), newNode.getNext());
             this.size = 1;
         } else {
@@ -60,18 +60,18 @@ public class List<T> implements Iterable<T> {
             newNode.setNext(current);
             current.setPrevious(newNode);
 
-            LOG.info("Adding Node: {}", newNode.getElement());
+            LOG.info("Bucket: adding {}", newNode.getElement());
             LOG.info("{} -> {}", current.getElement(), newNode.getElement());
             this.size++;
         }
 
     }
 
-    public void addList(List<T> list) {
+    public void addList(BucketList<T> list) {
         if (list.size == 0) {
-            LOG.info("List is empty");
+            LOG.info("Bucket is empty");
         } else {
-            LOG.info("Adding list {} to list {}", list, this);
+            LOG.info("Adding bucket {} to bucket {}", list, this);
             for (T t : list)
                 this.add(t);
         }
@@ -79,7 +79,7 @@ public class List<T> implements Iterable<T> {
 
     public T pop() {
         if (head == null) {
-            LOG.info("List is empty");
+            LOG.info("Bucket is empty");
             return null;
         } else {
             Node<T> current = head;
@@ -117,19 +117,28 @@ public class List<T> implements Iterable<T> {
         return false;
     }
 
-    public boolean contains(T element) {
+    public boolean contains(T elementToCheck) {
 
-        for (T t : this) {
-            if (t.equals(element)) {
-                LOG.info("Element {} is in the list", element);
+        if (this.head == null) {
+            return false;
+        } else {
+            Node<T> current = this.head;
+            
+            if (current.getElement() != null && current.getElement().equals(elementToCheck))
                 return true;
+            else {
+                while (current != null) {
+                    if (current.getElement() != null && current.getElement().equals(elementToCheck))
+                        return true;
+
+                    current = current.getNext();
+                }
+
+                return false;
             }
         }
-
-        LOG.info("Element {} is not in the list", element);
-
-        return false;
     }
+
 
     public int getSize() {
         return this.size;

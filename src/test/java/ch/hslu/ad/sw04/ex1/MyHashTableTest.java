@@ -5,11 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class MyHashTableTest {
     private static final Logger LOG = LoggerFactory.getLogger(MyHashTableTest.class);
+    private static Random random = new Random();
     private MyHashTable<Integer> myTable;
 
     @BeforeEach
@@ -27,8 +29,22 @@ class MyHashTableTest {
     }
 
     @Test
+    void addMultiple() {
+        for (int i = 0; i < 7; i++) {
+            myTable.add(random.nextInt(0, 5234));
+        }
+
+        LOG.info("Table -> {}", myTable);
+
+        assertEquals(7, myTable.getSize());
+    }
+
+    @Test
     void addCollision() {
         myTable.add(80);
+        myTable.add(64);
+        myTable.add(79);
+
         myTable.add(40);
         LOG.info("Table -> {}", myTable);
 
@@ -49,9 +65,19 @@ class MyHashTableTest {
 
     @Test
     void search() {
+        myTable.add(80);
+        myTable.add(64);
+        myTable.add(79);
+
+        assertTrue(myTable.search(64));
     }
 
     @Test
     void getSize() {
+        for (int i = 0; i < 7; i++) {
+            myTable.add(i);
+        }
+
+        assertEquals(7, myTable.getSize());
     }
 }

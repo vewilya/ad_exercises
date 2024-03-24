@@ -1,11 +1,12 @@
 package ch.hslu.ad.sw02;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ListTest {
     private static final Logger LOG = LoggerFactory.getLogger(ListTest.class);
@@ -44,7 +45,8 @@ class ListTest {
 
         list.remove(8);
 
-        assertEquals(list.getSize(), 2);
+        assertEquals(2, list.getSize());
+        LOG.info("List: {}", list);
     }
 
     @Test
@@ -57,6 +59,7 @@ class ListTest {
         list.remove(44);
 
         assertEquals(list.getSize(), 2);
+        LOG.info("List: {}", list);
     }
 
     @Test
@@ -69,6 +72,7 @@ class ListTest {
         list.remove(4);
 
         assertEquals(list.getSize(), 2);
+        LOG.info("List: {}", list);
     }
 
     @Test
@@ -78,9 +82,10 @@ class ListTest {
         list.add(4);
         list.add(8);
 
-        list.remove(14454);
-
+        assertFalse(list.remove(14454));
         assertEquals(list.getSize(), 3);
+
+        LOG.info("List: {}", list);
     }
 
     @Test
@@ -88,27 +93,16 @@ class ListTest {
         List<Integer> list = new List<Integer>();
         list.add(3);
         list.add(6);
+        list.add(7);
         list.add(9);
         list.add(7);
 
         list.remove(7);
         LOG.info("List: {}", list);
 
-        assertEquals(list.getSize(), 3);
-    }
-
-    @Test
-    void removeElementNotFound() {
-        List<Integer> list = new List<Integer>();
-        list.add(3);
-        list.add(6);
-        list.add(7);
-        list.add(9);
-
-        list.remove(23);
-        LOG.info("List: {}", list);
         assertEquals(list.getSize(), 4);
     }
+
 
     @Test
     void getSize() {
