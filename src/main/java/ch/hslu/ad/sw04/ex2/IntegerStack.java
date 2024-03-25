@@ -7,8 +7,8 @@ import java.util.Arrays;
 
 public class IntegerStack implements Stackable<Integer> {
     private static final Logger LOG = LoggerFactory.getLogger(IntegerStack.class);
+    private final Integer[] elements;
     private int STACK_SIZE;
-    private Integer[] elements;
     private int stackPointer;
 
     public IntegerStack() {

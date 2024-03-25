@@ -35,7 +35,6 @@ public class BucketList<T> implements Iterable<T> {
 
         LOG.info("Sum: {} ", sum);
         LOG.info("Size: {} ", li.getSize());
-
     }
 
 
@@ -123,7 +122,7 @@ public class BucketList<T> implements Iterable<T> {
             return false;
         } else {
             Node<T> current = this.head;
-            
+
             if (current.getElement() != null && current.getElement().equals(elementToCheck))
                 return true;
             else {

@@ -16,10 +16,11 @@ public class MyHashTable<E> implements HashTableInterface<E> {
         this.table = new Object[TABLE_SIZE];
         this.size = 0;
     }
-    
+
     @Override
     public void add(E element) {
         this.table[getIndex(element)] = element;
+        this.size++;
         LOG.info("Added element {} at index {}", element, getIndex(element));
     }
 
@@ -27,6 +28,7 @@ public class MyHashTable<E> implements HashTableInterface<E> {
     public boolean remove(E element) {
         if (search(element)) {
             this.table[getIndex(element)] = null;
+            this.size--;
             LOG.info("Removed element {} at index {}", element, getIndex(element));
             return true;
         }
@@ -40,16 +42,10 @@ public class MyHashTable<E> implements HashTableInterface<E> {
     }
 
     private int getIndex(E element) {
-        return element.hashCode() % TABLE_SIZE;
+        return Math.abs(element.hashCode() % TABLE_SIZE);
     }
 
     public final int getSize() {
-        this.size = 0;
-
-        for (Object element : table) {
-            if (element != null) this.size++;
-        }
-
         return this.size;
     }
 

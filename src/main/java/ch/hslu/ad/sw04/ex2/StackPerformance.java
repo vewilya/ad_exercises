@@ -25,9 +25,9 @@ public final class StackPerformance {
     }
 
     public static void main(String[] args) {
-        final int SIZE = 1000000;
+        final int SIZE = 1_000_000;
         final double NANO_SEC_DIVISOR = 1.0E09;
-        final int NUM_ROUNDS = 4;
+        final int NUM_ROUNDS = 10;
 
         final long[] myStackDurations = new long[NUM_ROUNDS];
         final long[] javaStackDurations = new long[NUM_ROUNDS];

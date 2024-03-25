@@ -26,6 +26,15 @@ class MyHashTableTest {
     }
 
     @Test
+    void addNegative() {
+        myTable.add(-200);
+        LOG.info("Table -> {}", myTable);
+
+        assertTrue(myTable.search(-200));
+    }
+
+
+    @Test
     void addMultiple() {
         for (int i = 0; i < 7; i++) {
             myTable.add(i);
@@ -76,5 +85,16 @@ class MyHashTableTest {
         }
 
         assertEquals(7, myTable.getSize());
+    }
+
+    @Test
+    void getSize2() {
+        for (int i = 0; i < 7; i++) {
+            myTable.add(i);
+        }
+
+        myTable.remove(4);
+
+        assertEquals(6, myTable.getSize());
     }
 }
