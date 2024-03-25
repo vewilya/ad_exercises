@@ -1,9 +1,13 @@
 package ch.hslu.ad.sw04.ex2;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 
 public class IntegerStack implements Stackable<Integer> {
-    private int stackCapacity;
+    private static final Logger LOG = LoggerFactory.getLogger(IntegerStack.class);
+    private int STACK_SIZE;
     private Integer[] elements;
     private int stackPointer;
 
@@ -26,33 +30,31 @@ public class IntegerStack implements Stackable<Integer> {
 
             return element;
         } catch (IndexOutOfBoundsException iabe) {
-
+            LOG.info("The stack is empty!");
             return null;
         }
 
     }
 
     @Override
-    public void push(Integer element) {
+    public boolean push(Integer element) {
         try {
             elements[stackPointer] = element;
             stackPointer++;
+            return true;
         } catch (IndexOutOfBoundsException iabe) {
-            System.out.println("The stack is full!");
+            LOG.info("The stack is full!");
+            return false;
         }
-    }
-
-    @Override
-    public void setStackCapacity(int maxStackSize) {
-        this.stackCapacity = maxStackSize;
     }
 
     @Override
     public void clear() {
-//        elements = new Integer[stackCapacity];
-        for (int i = 0; i < stackCapacity; i++) {
+        for (int i = 0; i < STACK_SIZE; i++) {
             elements[i] = null;
         }
+
+//        elements = new Integer[STACK_SIZE];
 
         stackPointer = 0;
     }
@@ -69,12 +71,12 @@ public class IntegerStack implements Stackable<Integer> {
 
     @Override
     public boolean isFull() {
-        return elements[stackCapacity - 1] != null;
+        return elements[STACK_SIZE - 1] != null;
     }
 
     @Override
     public String toString() {
-        return "Stack [elements=" + Arrays.toString(elements) + ", stackCapacity=" + stackCapacity + "]";
+        return "Stack [elements=" + Arrays.toString(elements) + ", stackCapacity=" + STACK_SIZE + "]";
     }
 
 }

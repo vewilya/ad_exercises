@@ -26,7 +26,7 @@ public final class StackPerformance {
 
     public static void main(String[] args) {
         final int SIZE = 1000000;
-        final double NANO_SEC_DIVISOR = 1000000000.0;
+        final double NANO_SEC_DIVISOR = 1.0E09;
         final int NUM_ROUNDS = 4;
 
         final long[] myStackDurations = new long[NUM_ROUNDS];
@@ -34,13 +34,16 @@ public final class StackPerformance {
         final long[] javaDequeDurations = new long[NUM_ROUNDS];
 
         IntegerStack myIntegerStack = new IntegerStack(SIZE);
-        Stack<Integer> javaStack = new Stack<Integer>();
+        Stack<Integer> javaStack = new Stack<>();
         javaStack.setSize(SIZE);
 
         Deque<Integer> javaDeque = new ArrayDeque<>();
 
+        LOG.info("-------------------// PREP //-------------------");
+        LOG.info("------------------------------------------------");
+
         long startPoint = System.nanoTime();
-        Integer array[] = StackPerformance.getArray(SIZE);
+        Integer[] array = StackPerformance.getArray(SIZE);
         long endPoint = System.nanoTime();
 
         LOG.info("Created Array in {} sec", (double) (endPoint - startPoint) / NANO_SEC_DIVISOR);
@@ -50,9 +53,10 @@ public final class StackPerformance {
             LOG.info("------------------------------------------------");
             LOG.info("-----------------// ROUND {} //-----------------", i);
             LOG.info("------------------------------------------------");
+
             long startPointMyStack = System.nanoTime();
             for (int j = 0; j < SIZE; j++) {
-                myIntegerStack.push(array[i]);
+                myIntegerStack.push(array[j]);
             }
             myStackDurations[i] = System.nanoTime() - startPointMyStack;
 
@@ -61,7 +65,7 @@ public final class StackPerformance {
 
             long startPointJavaStack = System.nanoTime();
             for (int j = 0; j < SIZE; j++) {
-                javaStack.push(array[i]);
+                javaStack.push(array[j]);
             }
             javaStackDurations[i] = System.nanoTime() - startPointJavaStack;
 
@@ -69,9 +73,8 @@ public final class StackPerformance {
             LOG.info("------------------------------------------------");
 
             long startPointJavaDeque = System.nanoTime();
-            for (int j = 0; j < SIZE; j++) {
-                javaDeque.add(array[i]); /* Add at the end of the queue */
-            }
+
+            for (int j = 0; j < SIZE; j++) javaDeque.add(array[j]);
             javaDequeDurations[i] = System.nanoTime() - startPointJavaDeque;
 
             LOG.info("Filled Java Deque in {} sec", (double) (javaDequeDurations[i] / NANO_SEC_DIVISOR));
@@ -80,7 +83,6 @@ public final class StackPerformance {
             myIntegerStack.clear();
             javaStack.clear();
             javaDeque.clear();
-
         }
 
         long myStackAverage = 0;
@@ -99,6 +101,7 @@ public final class StackPerformance {
 
         LOG.info("------------------------------------------------");
         LOG.info("Calculating average from the last 3 runs out of 4 - warm-up round doesnt count.");
+        LOG.info("------------------------------------------------");
         LOG.info("My Stack Average:     {}  seconds", myStackAverage / NANO_SEC_DIVISOR);
         LOG.info("Java Stack Average:   {}  seconds", javaStackAverage / NANO_SEC_DIVISOR);
         LOG.info("Java Deque Average:   {}  seconds", javaDequeAverage / NANO_SEC_DIVISOR);

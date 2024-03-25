@@ -5,13 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Random;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MyHashTableTest {
     private static final Logger LOG = LoggerFactory.getLogger(MyHashTableTest.class);
-    private static Random random = new Random();
     private MyHashTable<Integer> myTable;
 
     @BeforeEach
@@ -31,7 +28,7 @@ class MyHashTableTest {
     @Test
     void addMultiple() {
         for (int i = 0; i < 7; i++) {
-            myTable.add(random.nextInt(0, 5234));
+            myTable.add(i);
         }
 
         LOG.info("Table -> {}", myTable);

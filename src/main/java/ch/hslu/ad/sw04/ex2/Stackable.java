@@ -20,14 +20,7 @@ public interface Stackable<T> {
      *
      * @param element the element to be pushed onto the stack
      */
-    void push(T element);
-
-    /**
-     * Sets the maximum capacity of the stack.
-     *
-     * @param maxStackCapacity the maximum capacity of the stack
-     */
-    void setStackCapacity(int maxStackCapacity);
+    boolean push(T element);
 
     /**
      * Checks if the stack is empty.

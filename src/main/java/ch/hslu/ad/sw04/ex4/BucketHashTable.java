@@ -55,8 +55,6 @@ public class BucketHashTable<E> implements BucketHashTableInterface<E> {
                 return true;
             }
         }
-
-
     }
 
     @Override
@@ -65,7 +63,6 @@ public class BucketHashTable<E> implements BucketHashTableInterface<E> {
 
         if (this.search(elementToRemove)) {
             this.bucketHashTable[index].remove(elementToRemove);
-//            LOG.info("Element was found and removed!");
             return true;
         } else {
             LOG.info("Element was not found!");

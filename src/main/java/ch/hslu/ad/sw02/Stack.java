@@ -1,17 +1,16 @@
 package ch.hslu.ad.sw02;
 
-import java.util.Arrays;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
+
 public class Stack implements Stackable<String> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(Stack.class);
     private int stackCapacity;
     private String[] elements;
     private int stackPointer;
-
-    private static final Logger LOG = LoggerFactory.getLogger(Stack.class);
 
     public Stack() {
         this.initStack(100);
@@ -79,14 +78,4 @@ public class Stack implements Stackable<String> {
     public String toString() {
         return "Stack [elements=" + Arrays.toString(elements) + ", stackCapacity=" + stackCapacity + "]";
     }
-
-    public static void main(String[] args) {
-        Stack stack = new Stack(1);
-
-        stack.push("Hello");
-        stack.pop();
-        stack.pop();
-
-    }
-
 }

@@ -117,18 +117,25 @@ public class List<T> implements Iterable<T> {
         return false;
     }
 
-    public boolean contains(T element) {
+    public boolean contains(T elementToCheck) {
 
-        for (T t : this) {
-            if (t.equals(element)) {
-                LOG.info("Element {} is in the list", element);
+        if (this.head == null) {
+            return false;
+        } else {
+            Node<T> current = this.head;
+            if (current.getElement() != null && current.getElement().equals(elementToCheck))
                 return true;
+            else {
+                while (current != null) {
+                    if (current.getElement() != null && current.getElement().equals(elementToCheck))
+                        return true;
+
+                    current = current.getNext();
+                }
+
+                return false;
             }
         }
-
-        LOG.info("Element {} is not in the list", element);
-
-        return false;
     }
 
     public int getSize() {

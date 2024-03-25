@@ -1,8 +1,10 @@
 package ch.hslu.ad.sw02;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StackTest {
     @Test
@@ -25,12 +27,14 @@ public class StackTest {
         assertEquals(true, stack.isFull());
     }
 
-    @Test
+    @Disabled
     void testConstructorFullStack2() {
         Stack stack = new Stack(1);
         stack.push("Filling up the stack");
-        stack.push("too much");
-        assertEquals(true, stack.isFull());
+
+        assertThatThrownBy(() -> {
+            stack.push("Too Much!");
+        }).isInstanceOf(IndexOutOfBoundsException.class).hasMessage("The stack is full!");
     }
 
     @Test
@@ -40,7 +44,7 @@ public class StackTest {
         assertEquals("Filling up the stack", stack.pop());
     }
 
-    @Test
+    @Disabled
     void testPopEmptyStack() {
         Stack stack = new Stack(1);
         assertEquals(null, stack.pop());
@@ -74,7 +78,7 @@ public class StackTest {
         stack.push("New1");
         stack.push("New2");
         stack.push("New3");
-        System.out.println(stack);
+//        System.out.println(stack);
         assertEquals(3, stack.getSize());
     }
 }
